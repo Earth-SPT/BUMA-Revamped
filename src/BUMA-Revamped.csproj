@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <RootNamespace>BUMA_Revamped</RootNamespace>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="SemanticVersioning">
+        <HintPath>deps\SemanticVersioning.dll</HintPath>
+      </Reference>
+      <Reference Include="SPTarkov.Common">
+        <HintPath>deps\SPTarkov.Common.dll</HintPath>
+      </Reference>
+      <Reference Include="SPTarkov.DI">
+        <HintPath>deps\SPTarkov.DI.dll</HintPath>
+      </Reference>
+      <Reference Include="SPTarkov.Server.Core">
+        <HintPath>deps\SPTarkov.Server.Core.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+</Project>
