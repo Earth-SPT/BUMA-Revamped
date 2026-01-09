@@ -10,7 +10,7 @@ public record ModMetadata : AbstractModMetadata
     public override string Name { get; init; } = "BUMA Revamped";
     public override string Author { get; init; } = "papershredder432";
     public override List<string>? Contributors { get; init; } = ["MusicManiac", "Mattdokn_", "egbog"];
-    public override Version Version { get; init; } = new("2.0.0");
+    public override Version Version { get; init; } = new("2.0.1");
     public override Range SptVersion { get; init; } = new("~4.0.0");
     public override List<string>? Incompatibilities { get; init; }
     public override Dictionary<string, Range>? ModDependencies { get; init; }

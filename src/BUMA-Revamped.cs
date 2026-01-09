@@ -2,6 +2,7 @@
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Helpers;
+using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Logging;
 using SPTarkov.Server.Core.Models.Spt.Logging;
 using SPTarkov.Server.Core.Models.Utils;
@@ -9,7 +10,7 @@ using SPTarkov.Server.Core.Servers;
 
 namespace BUMA_Revamped;
 
-[Injectable (TypePriority = OnLoadOrder.PostDBModLoader + 1)]
+[Injectable (TypePriority = OnLoadOrder.PostDBModLoader + 50)]
 public class BumaRevamped(DatabaseServer databaseServer, ISptLogger<BumaRevamped> logger, ModHelper modHelper) : IOnLoad
 {
     private ModConfig _config;
@@ -30,7 +31,6 @@ public class BumaRevamped(DatabaseServer databaseServer, ISptLogger<BumaRevamped
                 logger.Error("[BUMA-Revamped] Config file could not be loaded or is empty.");
                 return Task.CompletedTask;
             }
-            
         }
         catch (Exception e)
         {
@@ -43,13 +43,8 @@ public class BumaRevamped(DatabaseServer databaseServer, ISptLogger<BumaRevamped
             if (!_config.BotsToReplaceAmmoFor.Contains(bot.Key))
                 continue;
 
-            
-            
-            foreach (var ammo in bot.Value.BotInventory.Ammo)
+            foreach (var ammo in bot.Value.BotInventory.Ammo.Where(ammo => _config.Ammo.ContainsKey(ammo.Key)))
             {
-                if (!_config.Ammo.ContainsKey(ammo.Key))
-                    continue;
-                
                 bot.Value.BotInventory.Ammo[ammo.Key] = _config.Ammo[ammo.Key];
             }
         }
